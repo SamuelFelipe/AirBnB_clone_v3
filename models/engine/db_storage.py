@@ -86,5 +86,5 @@ class DBStorage:
         return None
 
     def count(self, cls=None):
-        '''return the namber of entries of an item'''
+        '''return the number of entries of an item'''
         return len(self.all(cls))
