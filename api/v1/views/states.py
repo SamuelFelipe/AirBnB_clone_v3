@@ -49,7 +49,6 @@ def post_state():
         return 'Not a JSON', 400
     elif not info.get('name'):
         return 'Missing name', 400
-    
     new = State(**info)
     new.save()
     return new.to_dict(), 201
@@ -67,7 +66,7 @@ def update_state(id):
         info.pop('created_at', None)
         info.pop('updated_at', None)
         for key, val in info.items():
-            setattr(state, key, val) 
+            setattr(state, key, val)
         state.save()
         return state.to_dict(), 200
     abort(404)
