@@ -4,3 +4,4 @@ app_views = Blueprint('app_views',
                       __name__)
 
 import api.v1.views.index
+from api.v1.views.states import *
