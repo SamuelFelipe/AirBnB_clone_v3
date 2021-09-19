@@ -19,6 +19,7 @@ app.register_blueprint(app_views, url_prefix='/api/v1')
 def teardown(err):
     return storage.close()
 
+
 @app.errorhandler(404)
 def invalid_route(e):
     '''handler for 404 errors that returns a JSON-formatted'''
