@@ -11,6 +11,7 @@ from os import getenv
 
 
 app = Flask(__name__)
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 app.register_blueprint(app_views, url_prefix='/api/v1')
 
 
