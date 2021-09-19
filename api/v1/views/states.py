@@ -46,9 +46,9 @@ def post_state():
     '''Create a new state'''
     info = request.get_json()
     if not info:
-        return 'Not a JSON', 400
+        return 'Not a JSON\n', 400
     elif not info.get('name'):
-        return 'Missing name', 400
+        return 'Missing name\n', 400
     new = State(**info)
     new.save()
     return new.to_dict(), 201
