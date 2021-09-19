@@ -61,6 +61,8 @@ def update_state(id):
     info = request.get_json()
     if not info:
         return 'Not a JSON', 400
+    elif not info.get('name'):
+        return 'Missing name\n', 400
     if state:
         info.pop('id', None)
         info.pop('created_at', None)
