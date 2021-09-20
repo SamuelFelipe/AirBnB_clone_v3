@@ -55,7 +55,7 @@ def create_amenity():
 
 @app_views.route('/amenities/<string:id>',
                  methods=['PUT'], strict_slashes=False)
-def update_state(id):
+def update_amenity(id):
     '''Update a amenity'''
     amenity = storage.get(Amenity, id)
     info = request.get_json()
