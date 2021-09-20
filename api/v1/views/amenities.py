@@ -12,6 +12,7 @@ from models.amenities import Amenity
 
 @app_views.route('/amenities', methods=['GET'], strict_slashes=False)
 def all_amenities():
+    '''list all amenities'''
     response = [obj.to_dict() for obj in storage.all(Amenity).values()]
     return jsonify(response)
 
@@ -19,6 +20,7 @@ def all_amenities():
 @app_views.route('/amenities/<string:id>',
                  methods=['GET'], strict_slashes=False)
 def amenities_by_id(id):
+    '''return a amenity filtered by the id'''
     response = storage.get(Amenity, id)
     if response:
         return response.to_dict()
@@ -28,6 +30,7 @@ def amenities_by_id(id):
 @app_views.route('/amenities/<string:id>',
                  methods=['DELETE'], strict_slashes=False)
 def delete_amenity(id):
+    '''remove a intance of amenity'''
     response = storage.get(Amenity, id)
     if response:
         response.delete()
@@ -38,6 +41,7 @@ def delete_amenity(id):
 
 @app_views.route('/amenities', methods=['POST'], strict_slashes=False)
 def create_amenity():
+    '''create a new amenity'''
     info = request.get_json()
     if not info:
         abort(400, description='Not a JSON')
@@ -52,7 +56,7 @@ def create_amenity():
 @app_views.route('/amenities/<string:id>',
                  methods=['PUT'], strict_slashes=False)
 def update_state(id):
-    '''Update a state'''
+    '''Update a amenity'''
     amenity = storage.get(Amenity, id)
     info = request.get_json()
     if not info:
