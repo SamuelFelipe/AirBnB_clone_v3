@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 '''
-
+Api management to the class State
 '''
 
 from api.v1.views import app_views
