@@ -5,7 +5,7 @@
 '''
 
 from api.v1.views import app_views
-from flask import jsonify, abort, request
+from flask import jsonify, abort, request, make_response
 from models import storage
 from models.amenity import Amenity
 
@@ -23,7 +23,7 @@ def amenities_by_id(id):
     '''return a amenity filtered by the id'''
     response = storage.get(Amenity, id)
     if response:
-        return response.to_dict()
+        return jsonify(response.to_dict())
     abort(404)
 
 
@@ -35,7 +35,7 @@ def delete_amenity(id):
     if response:
         response.delete()
         storage.save()
-        return {}, 200
+        return make_response(jsonify({}), 200)
     abort(404)
 
 
@@ -50,7 +50,7 @@ def create_amenity():
 
     new = Amenity(**info)
     new.save()
-    return new.to_dict(), 201
+    return make_response(jsonify(new.to_dict()), 201)
 
 
 @app_views.route('/amenities/<string:id>',
@@ -70,5 +70,5 @@ def update_amenity(id):
         for key, val in info.items():
             setattr(amenity, key, val)
         amenity.save()
-        return amenity.to_dict(), 200
+        return make_response(jsonify(amenity.to_dict()), 200)
     abort(404)
