@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 '''
-
+Main app to manage api
 '''
 
 from api.v1.views import app_views
@@ -17,6 +17,7 @@ app.register_blueprint(app_views)
 
 @app.teardown_appcontext
 def teardown(err):
+    '''Teardown app context'''
     return storage.close()
 
 
