@@ -78,11 +78,11 @@ class DBStorage:
 
     def get(self, cls, id):
         '''get an intem by the id'''
-        if cls in classes.values():
-            query = select(cls).where(cls.id == id)
-            result = self.__session.execute(query).fetchone()
-            if result:
-                return result[0]
+        obj_dict = self.all(cls)
+        if obj_dict:
+            for obj in obj_dict.values():
+                if obj.id == id:
+                    return obj
         return None
 
     def count(self, cls=None):
