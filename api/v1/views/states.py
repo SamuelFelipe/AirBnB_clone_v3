@@ -41,14 +41,14 @@ def delete_state(id):
 
 @app_views.route('/states',
                  methods=['POST'], strict_slashes=False)
-def post_state(state_id):
+def post_state():
     '''Create a new state'''
     info = request.get_json()
     if not info:
         return 'Not a JSON\n', 400
     elif not info.get('name'):
         return 'Missing name\n', 400
-    new = City(**info)
+    new = State(**info)
     new.save()
     return new.to_dict(), 201
 
