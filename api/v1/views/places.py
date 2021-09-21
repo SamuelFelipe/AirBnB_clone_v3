@@ -15,6 +15,7 @@ from models.user import User
 @app_views.route('/cities/<string:id>/places',
                  methods=['GET'], strict_slashes=False)
 def get_city_places(id):
+    '''get all the places in a city'''
     city = storage.get(City, id)
     if not city:
         abort(404)
@@ -24,6 +25,7 @@ def get_city_places(id):
 
 @app_views.route('/places/<string:id>', methods=['GET'], strict_slashes=False)
 def get_place(id):
+    '''get a place by id'''
     place = storage.get(Place, id)
     if not place:
         abort(404)
@@ -33,17 +35,19 @@ def get_place(id):
 @app_views.route('/places/<string:id>',
                  methods=['DELETE'], strict_slashes=False)
 def del_place(id):
+    '''delete a place'''
     place = storage.get(Place, id)
     if not place:
         abort(404)
     place.delete()
     storage.save()
-    return place.to_dict(), 200
+    return {}, 200
 
 
 @app_views.route('/cities/<string:id>/places',
                  methods=['POST'], strict_slashes=False)
 def new_place(id):
+    '''create a place'''
     info = request.get_json()
     if not info:
         abort(400, description='Not a JSON')
@@ -65,6 +69,7 @@ def new_place(id):
 
 @app_views.route('/places/<string:id>', methods=['PUT'], strict_slashes=False)
 def update_place(id):
+    '''Update a place'''
     place = storage.get(Place, id)
     if not place:
         abort(404)
