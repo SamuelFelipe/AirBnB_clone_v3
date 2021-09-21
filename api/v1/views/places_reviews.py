@@ -30,8 +30,9 @@ def get_review(id):
     return rev.to_dict()
 
 
-@app_views.route('/reviews/<string:id>', methods=['GET'], strict_slashes=False)
-def get_review(id):
+@app_views.route('/reviews/<string:id>',
+                 methods=['DELETE'], strict_slashes=False)
+def delete_review(id):
     rev = storage.get(Review, id)
     if not rev:
         abort(404)
