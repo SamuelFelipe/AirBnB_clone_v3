@@ -6,11 +6,13 @@ Main app to manage api
 
 from api.v1.views import app_views
 from flask import Flask
+from flask_cors import CORS
 from models import storage
 from os import getenv
 
 
 app = Flask(__name__)
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 app.register_blueprint(app_views)
 
