@@ -43,11 +43,11 @@ def create_user():
     '''create a user'''
     info = request.get_json()
     if not info:
-        abort(400, 'Not a JSON')
+        abort(400, description='Not a JSON')
     if not info.get('email'):
-        abort(400, 'Missing email')
+        abort(400, description='Missing email')
     elif not info.get('password'):
-        abort(400, 'Missing password')
+        abort(400, description='Missing password')
     new = User(**info)
     storage.save()
     return new.to_dict(), 201
@@ -58,7 +58,7 @@ def update_user(id):
     '''Update a user'''
     info = request.get_json()
     if not info:
-        abort(400, 'Not a JSON')
+        abort(400, description='Not a JSON')
     user = storage.get(User, id)
     if not user:
         abort(404)
