@@ -71,8 +71,6 @@ class FileStorage:
 
     def get(self, cls, id):
         '''get an item depending of the class and id'''
-        if not cls or cls not in classes.values():
-            return None
         items = self.all(cls)
         for obj in items.values():
             if obj.id == id:
