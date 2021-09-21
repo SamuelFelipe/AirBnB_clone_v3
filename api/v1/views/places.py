@@ -38,7 +38,7 @@ def del_place(id):
         abort(404)
     place.delete()
     storage.save()
-    return place.to_dict()
+    return place.to_dict(), 200
 
 
 @app_views.route('/cities/<string:id>/places',
