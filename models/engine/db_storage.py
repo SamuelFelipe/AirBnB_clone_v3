@@ -77,7 +77,7 @@ class DBStorage:
         self.__session.remove()
 
     def get(self, cls, id):
-        '''get an intem by the id'''
+        '''get an item by the id'''
         obj_dict = self.all(cls)
         for obj in obj_dict.values():
             if obj.id == id:

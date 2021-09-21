@@ -1,6 +1,3 @@
-#!/usr/bin/python3
-'''API Module
-'''
 from flask import Blueprint
 
 
