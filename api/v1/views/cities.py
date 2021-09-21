@@ -56,7 +56,8 @@ def create_city(state_id):
         abort(400, description='Not a JSON')
     elif not info.get('name'):
         abort(400, description='Missing name')
-    new = City(**info, state_id=state_id)
+    info['state_id'] = state_id
+    new = City(**info)
     new.save()
     return new.to_dict(), 201
 
